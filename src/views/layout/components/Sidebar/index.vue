@@ -14,7 +14,8 @@
   export default {
     computed: {
       ...mapGetters([
-        'sidebar'
+        'sidebar',
+        'permission_routers'
       ]),
       routes() {
         return this.$router.options.routes

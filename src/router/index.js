@@ -19,7 +19,7 @@ import Layout from '@/views/layout'
     breadcrumb: false            if false, the item will hidden in breadcrumb(default is true)
   }
 **/
-const routes = [{
+export const constantRouterMap = [{
   path: '/login',
   name: 'Login',
   hidden: true,
@@ -109,10 +109,12 @@ const routes = [{
   component: () => import( /* webpackChunkName: "404" */ '@/views/404')
 }]
 
+export const asyncRouterMap = []
+
 export default new VueRouter({
   //mode: 'history',
   base: process.env.BASE_URL,
-  routes,
+  routes: constantRouterMap,
   scrollBehavior: () => ({
     y: 0
   })

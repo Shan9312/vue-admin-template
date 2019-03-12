@@ -1,4 +1,4 @@
-import SvgIcon from './SvgIcon'
+import SvgIcon from './SvgIcon/index'
 
 export default {
   SvgIcon
