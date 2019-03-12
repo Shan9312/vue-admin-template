@@ -21,11 +21,10 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
   },
-
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
-      patterns: [path.resolve(__dirname, 'src/styles/variables.less')]
+      patterns: [path.resolve(__dirname, 'src/styles/mixin.less')]
     }
   }
 }
