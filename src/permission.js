@@ -1,4 +1,5 @@
 import router from './router'
+import store from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { Message } from 'element-ui'
@@ -20,15 +21,16 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      if (this.$store.getters.roles.length === 0) {
-        this.$store.dispatch('GetUserInfo').then(res => {
-          const roles = res.data.roles
-          this.$store.dispatch('GenerateRoutes', { roles }).then(() => {
+      if (store.getters.roles.length === 0) {
+        store.dispatch('GetUserInfo').then(res => {
+          const data = res
+          const roles = data.roles
+          store.dispatch('GenerateRoutes', { roles }).then(() => {
             router.addRoutes(store.getters.addRouters)
             next({ ...to, replace: true })
           })
         }).catch((err) => {
-          this.$store.dispatch('Logout').then(() => {
+          store.dispatch('Logout').then(() => {
             Message.error(err)
             next({ path: '/' })
           })

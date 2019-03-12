@@ -20,8 +20,15 @@ const user = {
     LoginByUsername({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         LoginService.loginByUsername(userInfo.username, userInfo.password).then(res => {
-          Auth.setToken(res.data.token)
-          resolve()
+          const data = res
+          if (data.roles && data.roles.length > 0) {
+            commit('SET_ROLES', data.roles)
+            commit('SET_USER_INFO', data)
+            Auth.setToken(data.token)
+          } else {
+            reject('loginByUsername: 角色列表不能为空')
+          }
+          resolve(res)
         }).catch(err => {
           reject(err)
         })
@@ -30,11 +37,13 @@ const user = {
     GetUserInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
         LoginService.getUserInfo(Auth.getToken()).then(res => {
-          if (res.data.roles && res.data.roles.length > 0) {
-            commit('SET_ROLES', res.data.roles)
-            commit('SET_USER_INFO', res.data)
+          const data = res
+          if (data.roles && data.roles.length > 0) {
+            commit('SET_ROLES', data.roles)
+            commit('SET_USER_INFO', data)
+            Auth.setToken(data.token)
           } else {
-            reject('getUserInfo: 角色列表不能为空')
+            reject('loginByUsername: 角色列表不能为空')
           }
           resolve(res)
         }).catch(err => {
@@ -44,7 +53,7 @@ const user = {
     },
     Logout({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
+        LoginService.logout(state.token).then(() => {
           commit('SET_USER_INFO', {})
           commit('SET_ROLES', [])
           Auth.removeToken()

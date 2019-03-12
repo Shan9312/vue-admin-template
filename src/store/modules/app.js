@@ -1,7 +1,7 @@
 const app = {
   state: {
     sidebar: {
-      opened: localStorage.getItem('sidebarStatus') || false,
+      opened: localStorage.getItem('sidebarStatus') ? true : false,
       withoutAnimation: false
     },
     device: 'desktop'

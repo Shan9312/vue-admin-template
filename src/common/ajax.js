@@ -3,16 +3,22 @@ import {
   Message,
   MessageBox
 } from 'element-ui'
-import store from '../store'
+import { Auth } from '@/common'
+
+const settings = {
+  baseURL: ''
+}
 
 const ajax = axios.create({
-  baseURL: process.env.BASE_API,
+  baseURL: settings.baseURL,
   timeout: 5000
 })
 
 ajax.interceptors.request.use(
   config => {
-
+    if (Auth.getToken()) {
+      config.headers['x-token'] = settings.token
+    }
     return config
   },
   error => {
@@ -41,8 +47,8 @@ ajax.interceptors.response.use(
             type: 'warning'
           }
         ).then(() => {
-          store.dispatch('Logout').then(() => {
-            location.reload() // 为了重新实例化vue-router对象 避免bug
+          this.$store.dispatch('Logout').then(() => {
+            location.reload()
           })
         })
       }
@@ -62,4 +68,29 @@ ajax.interceptors.response.use(
   }
 )
 
-export default ajax
+export default {
+  serBaseURL(baseURL) {
+    settings.baseURL = baseURL
+  },
+  get(url, data) {
+    let params = '';
+    if (data) {
+      Object.keys(data).forEach(key => {
+        params += `&${key}=${data[key]}`;
+      });
+      params = `?${params.substring(1)}`;
+    }
+    return ajax({
+      method: 'get',
+      url: `${url}${params}`
+    })
+  },
+  post(url, data, headers) {
+    return ajax({
+      method: 'post',
+      url,
+      data,
+      headers
+    })
+  }
+}

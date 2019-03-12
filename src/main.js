@@ -24,8 +24,10 @@ const requireAll = requireContext => requireContext.keys().map(requireContext)
 const req = require.context('@/assets/icons/svg', false, /\.svg$/)
 requireAll(req)
 
-Vue.config.productionTip = false
+/**引入权限判断 */
+import './permission'
 
+Vue.config.productionTip = false
 new Vue({
   router,
   store,

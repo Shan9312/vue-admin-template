@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">vue-admin-template</h3>
+      <h3 class="title">doooly-admin-template</h3>
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
@@ -22,10 +22,6 @@
           Sign in
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div>
     </el-form>
   </div>
 </template>
@@ -54,8 +50,8 @@
       }
       return {
         loginForm: {
-          username: 'admin',
-          password: 'admin'
+          username: 'test',
+          password: '123456'
         },
         loginRules: {
           username: [{
@@ -86,7 +82,7 @@
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.loading = true
-            this.$store.dispatch('Login', this.loginForm).then(() => {
+            this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
               this.loading = false
               this.$router.push({
                 path: this.redirect || '/'
@@ -124,7 +120,7 @@
       height: 47px;
       width: 85%;
 
-      input {
+      /deep/ .el-input__inner {
         background: transparent;
         border: 0px;
         -webkit-appearance: none;

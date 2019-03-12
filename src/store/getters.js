@@ -3,7 +3,7 @@ export default {
   device: state => state.app.device,
   visitedViews: state => state.tagsView.visitedViews,
   cachedViews: state => state.tagsView.cachedViews,
-  userInfo: state => state.userInfo,
+  userInfo: state => state.user.userInfo,
   roles: state => state.user.roles,
   permission_routers: state => state.permission.routers,
   addRouters: state => state.permission.addRouters,
