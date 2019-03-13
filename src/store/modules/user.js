@@ -20,7 +20,7 @@ const user = {
     LoginByUsername({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         LoginService.loginByUsername(userInfo.username, userInfo.password).then(res => {
-          const data = res
+          const data = res.data
           if (data.roles && data.roles.length > 0) {
             commit('SET_ROLES', data.roles)
             commit('SET_USER_INFO', data)
@@ -34,10 +34,10 @@ const user = {
         })
       })
     },
-    GetUserInfo({ commit, state }) {
+    GetUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
         LoginService.getUserInfo(Auth.getToken()).then(res => {
-          const data = res
+          const data = res.data
           if (data.roles && data.roles.length > 0) {
             commit('SET_ROLES', data.roles)
             commit('SET_USER_INFO', data)
@@ -51,9 +51,9 @@ const user = {
         })
       })
     },
-    Logout({ commit, state }) {
+    Logout({ commit }) {
       return new Promise((resolve, reject) => {
-        LoginService.logout(state.token).then(() => {
+        LoginService.logout().then(() => {
           commit('SET_USER_INFO', {})
           commit('SET_ROLES', [])
           Auth.removeToken()

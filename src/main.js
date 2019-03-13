@@ -27,7 +27,11 @@ requireAll(req)
 /**引入权限判断 */
 import './permission'
 
+/**mockjs */
+import './mock'
+
 Vue.config.productionTip = false
+
 new Vue({
   router,
   store,

@@ -23,17 +23,16 @@ export const constantRouterMap = [{
   path: '/login',
   name: 'Login',
   hidden: true,
-  component: () => import( /* webpackChunkName: "login" */ '@/views/login')
+  component: () => import( /* webpackChunkName: "main" */ '@/views/login')
 },
 {
   path: '/',
   name: 'Home',
   redirect: '/home',
   component: Layout,
-  hidden: true,
   children: [{
     path: 'home',
-    component: () => import( /* webpackChunkName: "home" */ '@/views/home'),
+    component: () => import( /* webpackChunkName: "main" */ '@/views/home'),
     meta: { title: 'Home', icon: 'form' }
   }]
 },
@@ -47,69 +46,25 @@ export const constantRouterMap = [{
     meta: { title: 'Form', icon: 'form' }
   }]
 }, {
-  path: '/nested',
-  name: 'Nested',
-  redirect: '/nested/menu1',
-  component: Layout,
-  alwaysShow: true,
-  meta: {
-    title: 'Nested',
-    icon: 'nested'
-  },
-  children: [
-  {
-    path: 'menu1',
-    name: 'Menu1',
-    component: () => import( /* webpackChunkName: "nested" */ '@/views/nested/menu1/index'),
-    meta: { title: 'Menu1' },
-    children: [
-    {
-      path: 'menu1-1',
-      name: 'Menu1-1',
-      component: () => import( /* webpackChunkName: "nested" */ '@/views/nested/menu1/menu1-1'),
-      meta: { title: 'Menu1-1' }
-    },
-    {
-      path: 'menu1-2',
-      name: 'Menu1-2',
-      component: () => import( /* webpackChunkName: "nested" */ '@/views/nested/menu1/menu1-2'),
-      meta: { title: 'Menu1-2' },
-      children: [
-      {
-        path: 'menu1-2-1',
-        name: 'Menu1-2-1',
-        component: () => import( /* webpackChunkName: "nested" */ '@/views/nested/menu1/menu1-2/menu1-2-1'),
-        meta: { title: 'Menu1-2-1' }
-      },
-      {
-        path: 'menu1-2-2',
-        name: 'Menu1-2-2',
-        component: () => import( /* webpackChunkName: "nested" */ '@/views/nested/menu1/menu1-2/menu1-2-2'),
-        meta: { title: 'Menu1-2-2' }
-      }]
-    },
-    {
-      path: 'menu1-3',
-      name: 'Menu1-3',
-      component: () => import( /* webpackChunkName: "nested" */ '@/views/nested/menu1/menu1-3'),
-      meta: { title: 'Menu1-3' }
-    }]
-  },
-  {
-    path: 'menu2',
-    name: 'Menu2',
-    component: () => import( /* webpackChunkName: "nested" */ '@/views/nested/menu2/index'),
-    meta: { title: 'menu2' }
-  }]
-},
-{
-  path: '*',
+  path: '/404',
   name: 'Page404',
   hidden: true,
-  component: () => import( /* webpackChunkName: "404" */ '@/views/404')
+  component: () => import( /* webpackChunkName: "error-page" */ '@/views/error-page/404')
+},
+{
+  path: '/401',
+  name: 'Page401',
+  hidden: true,
+  component: () => import( /* webpackChunkName: "error-page" */ '@/views/error-page/401')
 }]
 
-export const asyncRouterMap = []
+import tableRouter from './modules/table'
+import nestedRouter from './modules/nested'
+
+export const asyncRouterMap = [
+  tableRouter,
+  nestedRouter
+]
 
 export default new VueRouter({
   //mode: 'history',

@@ -8,6 +8,6 @@ export default {
     return localStorage.setItem(TOKEN_KEY, token)
   },
   removeToken() {
-    return localStorage.setItem(TOKEN_KEY)
+    return localStorage.setItem(TOKEN_KEY,'')
   }
 }

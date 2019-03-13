@@ -1,7 +1,7 @@
 import LoginService from './login'
-import OrderService from './order'
+import ArticleService from './article'
 
 export {
   LoginService,
-  OrderService
+  ArticleService
 }

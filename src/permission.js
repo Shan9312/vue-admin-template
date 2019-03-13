@@ -23,7 +23,7 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetUserInfo').then(res => {
-          const data = res
+          const data = res.data
           const roles = data.roles
           store.dispatch('GenerateRoutes', { roles }).then(() => {
             router.addRoutes(store.getters.addRouters)

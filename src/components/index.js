@@ -1,5 +1,7 @@
-import SvgIcon from './SvgIcon/index'
+import SvgIcon from './SvgIcon'
+import Pagination from './Pagination'
 
 export default {
-  SvgIcon
+  SvgIcon,
+  Pagination
 }
