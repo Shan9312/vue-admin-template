@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      if (store.getters.roles.length === 0) {
+      if (store.getters.roles.length === 0 || from.path==='/login') {
         store.dispatch('GetUserInfo').then(res => {
           const data = res.data
           const roles = data.roles

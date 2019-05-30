@@ -3,8 +3,8 @@ import { Utils } from '@/common'
 const userMap = [
 {
   id: 1,
-  name: 'nemo',
-  pwd: 'abc123',
+  name: 'admin',
+  pwd: '123456',
   token: 'token123',
   age: 18,
   avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
@@ -12,12 +12,21 @@ const userMap = [
 },
 {
   id: 2,
-  name: 'test',
+  name: 'table',
   pwd: '123456',
   token: 'token234',
   age: 18,
   avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-  roles: ['test']
+  roles: ['table']
+},
+{
+  id: 3,
+  name: 'nested',
+  pwd: '123456',
+  token: 'token345',
+  age: 18,
+  avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+  roles: ['nested']
 }]
 
 export default {

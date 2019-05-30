@@ -8,7 +8,8 @@ const nestedRouter = {
   alwaysShow: true,
   meta: {
     title: 'Nested',
-    icon: 'nested'
+    icon: 'nested',
+    roles: ['nested']
   },
   children: [
   {

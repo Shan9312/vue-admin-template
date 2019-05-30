@@ -63,7 +63,12 @@ import nestedRouter from './modules/nested'
 
 export const asyncRouterMap = [
   tableRouter,
-  nestedRouter
+  nestedRouter,
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
+  }
 ]
 
 export default new VueRouter({

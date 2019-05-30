@@ -24,10 +24,7 @@ const ajax = (method, url, data, options = {}) => {
     options.headers['x-token'] = token
   }
 
-  console.log(options)
-
   return axios.request(options).then(res => {
-      console.log(res)
       return Promise.resolve(res)
     })
     .catch(err => {
